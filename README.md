@@ -10,11 +10,17 @@ Une application qui permet de manipuler une entité Pizza.
 Le menu affiché
 
 **** Application Pizzeria Console ****
+
 0. Lister Pizzas
+ 
 1. Ajouter Nouvelle Pizza
+
 2. Mettre à jour une Pizza
+
 3. Supprimer une Pizza
+
 4. Quitter
+
 L'application est basée sur une approche procédurale de la programmation.
 
 Les sources sont dans le répertoire pizzeria-console-imperative
@@ -29,8 +35,13 @@ Le menu affiché
 
 **** Application Pizzeria Console ****
 0. Lister Pizzas
+
 1. Ajouter Nouvelle Pizza
+
 2. Mettre à jour une Pizza
+
 3. Supprimer une Pizza
+
 4. Quitter
+
 Les sources sont dans le répertoire pizzeria-console-objet
