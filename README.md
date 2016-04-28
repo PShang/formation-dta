@@ -11,6 +11,7 @@ Le menu affiché
 
 **** Application Pizzeria Console ****
 
+
 0. Lister Pizzas
  
 1. Ajouter Nouvelle Pizza
@@ -34,6 +35,7 @@ Elle réécrit l'application pizzeria-console-imperative en appliquant les princ
 Le menu affiché
 
 **** Application Pizzeria Console ****
+
 0. Lister Pizzas
 
 1. Ajouter Nouvelle Pizza
