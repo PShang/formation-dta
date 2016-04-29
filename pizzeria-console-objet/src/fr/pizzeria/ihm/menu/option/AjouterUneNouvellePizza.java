@@ -1,8 +1,10 @@
 package fr.pizzeria.ihm.menu.option;
+import java.util.InputMismatchException;
 import java.util.Scanner;
+
 import fr.pizzeria.dao.IPizzaDao;
 import fr.pizzeria.exception.DaoException;
-import fr.pizzeria.exception.SavePizzaException;
+import fr.pizzeria.model.CategoriePizza;
 import fr.pizzeria.model.Pizza;
 
 public class AjouterUneNouvellePizza extends AbstractOptionMenu {
@@ -29,12 +31,28 @@ public class AjouterUneNouvellePizza extends AbstractOptionMenu {
 			{
 				pizzaDao.savePizza(p);
 			
+			System.out.println("Veuillez saisir la categorie");
+			CategoriePizza[]categoriePizzas=CategoriePizza.values();
+			for (CategoriePizza cat: categoriePizzas)
+			{
+				System.out.println(cat.ordinal()+"->"+cat.getlibelle());
+			}
+			int saisieCategorie=sc.nextInt();
+			p.setCategorie(categoriePizzas[saisieCategorie]);
+			
+			pizzaDao.savePizza(p);
 			System.out.println("Nouvelle pizza créée");
+			
+			
 			}
-			catch (DaoException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			catch (InputMismatchException e) {
+				System.out.println("Input"+sc.next()+"n'est pas un nombre");}
+				catch (DaoException e) 
+				{
+					System.err.println("Echec création de pizza");
+				}
+				/*e.printStackTrace();*/
+			
 		return true;
 	}
 

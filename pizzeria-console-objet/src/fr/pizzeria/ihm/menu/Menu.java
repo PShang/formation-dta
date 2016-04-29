@@ -25,12 +25,12 @@ public class Menu {
 
 	}
 
-	private void initialiserOption(Scanner scanncer, IPizzaDao pizzaDao) {
+	private void initialiserOption(Scanner scanner, IPizzaDao pizzaDao) {
 
 		options.put(1, new ListerPizzaOptionMenu(pizzaDao));
-		options.put(2, new AjouterUneNouvellePizza(sc, pizzaDao));
-		options.put(3, new MettreAJourUnePizza(sc, pizzaDao));
-		options.put(4, new SupprimerUnePizza(sc, pizzaDao));
+		options.put(2, new AjouterUneNouvellePizza(scanner, pizzaDao));
+		options.put(3, new MettreAJourUnePizza(scanner, pizzaDao));
+		options.put(4, new SupprimerUnePizza(scanner, pizzaDao));
 		options.put(99, new QuitterOptionMenu());
 
 	}

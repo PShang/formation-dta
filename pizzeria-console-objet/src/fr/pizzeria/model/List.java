@@ -7,9 +7,9 @@ import java.util.Set;
 
 public class List {
 	public static void main(String[] args) {
-		Pizza pizza1 = new Pizza("code1", "nom1", 12);
-		Pizza pizza2= new Pizza("code2", "nom2", 14);
-		Pizza pizza3 = new Pizza("code3", "nom3", 13);
+		Pizza pizza1 = new Pizza("code1", "nom1", 12, CategoriePizza.POISSON);
+		Pizza pizza2 = new Pizza("code2", "nom2", 14, CategoriePizza.SANS_VIANDE);
+		Pizza pizza3 = new Pizza("code3", "nom3", 13, CategoriePizza.VIANDE);
 
 		ArrayList<Pizza> pizzalist = new ArrayList<Pizza>();
 
@@ -34,7 +34,6 @@ public class List {
 		Set<Pizza> pizzaSet = new HashSet<Pizza>();
 		pizzaSet.add(pizza1);
 		pizzaSet.add(pizza2);
-		pizzaSet.add(pizza3);}
+		pizzaSet.add(pizza3);
+	}
 }
-		
-	
