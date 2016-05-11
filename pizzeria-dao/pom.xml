@@ -2,7 +2,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<artifactId>pizzeria-model</artifactId>
+	<artifactId>pizzeria-dao</artifactId>
 
 	<parent>
 		<groupId>fr.pizzeria</groupId>
@@ -11,12 +11,20 @@
 		<relativePath>../</relativePath>
 	</parent>
 
+
+
 	<dependencies>
 		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-lang3</artifactId>
+			<groupId>fr.pizzeria</groupId>
+			<artifactId>pizzeria-model</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.github.stefanbirkner</groupId>
+			<artifactId>system-rules</artifactId>
 		</dependency>
 	</dependencies>
-
-
 </project>
