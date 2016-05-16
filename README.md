@@ -1,4 +1,5 @@
 # formation-dta
+[![Build Status](http://ns377570.ip-5-196-89.eu:8080/job/Shang%20Pagotto-Pizzeria-Build/badge/icon)](http://ns377570.ip-5-196-89.eu:8080/job/Shang%20Pagotto-Pizzeria-Build/)
 projets réalisés pendant la formation
 Formation DTA
 Ce dépôt contient les projets réalisés pendant la formation DTA.
