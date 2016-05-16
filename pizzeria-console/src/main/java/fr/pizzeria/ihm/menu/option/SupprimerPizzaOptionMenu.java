@@ -25,7 +25,7 @@ public class SupprimerPizzaOptionMenu extends AbstractOptionMenu {
 			pizzaDao.deletePizza(codePizza);
 			System.out.println("Pizza supprimée");
 		} catch (DaoException e) {
-			System.err.println("Echec suppression pizza");
+			System.err.println("Echec suppression pizza" + e.getMessage());
 		}
 
 		return true;

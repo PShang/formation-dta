@@ -4,7 +4,10 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.TreeMap;
 
+import com.mysql.jdbc.PingTarget;
+
 import fr.pizzeria.dao.IPizzaDao;
+import fr.pizzeria.dao.PizzaDaoImpl;
 import fr.pizzeria.ihm.menu.option.AbstractOptionMenu;
 import fr.pizzeria.ihm.menu.option.AfficherPizzaTarifPlusEleveOptionMenu;
 import fr.pizzeria.ihm.menu.option.AjouterNouvellePizzaOptionMenu;
@@ -14,13 +17,22 @@ import fr.pizzeria.ihm.menu.option.MettreAJourPizzaOptionMenu;
 import fr.pizzeria.ihm.menu.option.QuitterOptionMenu;
 import fr.pizzeria.ihm.menu.option.SupprimerPizzaOptionMenu;
 
-public class Menu {
+public class NouveauMenu extends PizzaDaoImpl {
+	
+	
+	private static final String REPERTOIRE_DATA = "data";
+	
+	public void afficher(){
+		
+	}
+	
 
 	private static final String MENU_TITRE_LIBELLE = "Application Pizzeria Console";
+	
 	private Map<Integer, AbstractOptionMenu> options = new TreeMap<Integer, AbstractOptionMenu>();
 	private Scanner sc;
 
-	public Menu(Scanner sc, IPizzaDao pizzaDao) {
+	public NouveauMenu(Scanner sc, IPizzaDao pizzaDao) {
 		super();
 		initialiserOptions(sc, pizzaDao);
 		this.sc = sc;
@@ -46,23 +58,5 @@ public class Menu {
 			int saisie = sc.nextInt();
 			continuer = options.get(saisie).execute();
 		}
-	}
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+}
 }

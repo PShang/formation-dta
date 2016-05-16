@@ -65,13 +65,15 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.github.stefanbirkner</groupId>
 			<artifactId>system-rules</artifactId>
 		</dependency>
 	</dependencies>
-	
+
 	<profiles>
 		<profile>
 			<id>dev</id>
@@ -79,16 +81,22 @@
 				<activeByDefault>true</activeByDefault>
 			</activation>
 			<properties>
-				<dao.impl>0</dao.impl>
+
+				<dao.impl>2</dao.impl>
+				<jdbc.driver>com.mysql.jdbc.Driver</jdbc.driver>
+				<jdbc.url>jdbc:mysql://localhost:8889/pizzeriadb</jdbc.url>
+				<jdbc.user>pizzeriadb</jdbc.user>
+				<jdbc.pass>pizzeriadb</jdbc.pass>
+
 			</properties>
 		</profile>
-		
+
 		<profile>
 			<id>prod</id>
 			<properties>
-				<dao.impl>1</dao.impl>
+				<dao.impl>2</dao.impl>
 			</properties>
 		</profile>
-	
+
 	</profiles>
 </project>

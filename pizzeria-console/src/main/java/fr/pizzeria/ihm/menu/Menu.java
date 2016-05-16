@@ -13,7 +13,7 @@ import fr.pizzeria.ihm.menu.option.ListerPizzaOptionMenu;
 import fr.pizzeria.ihm.menu.option.MettreAJourPizzaOptionMenu;
 import fr.pizzeria.ihm.menu.option.QuitterOptionMenu;
 import fr.pizzeria.ihm.menu.option.SupprimerPizzaOptionMenu;
-
+import fr.pizzeria.ihm.menu.option.ImporterBaseDeDonneesOptionMenu;
 public class Menu {
 
 	private static final String MENU_TITRE_LIBELLE = "Application Pizzeria Console";
@@ -33,6 +33,7 @@ public class Menu {
 		options.put(4, new SupprimerPizzaOptionMenu(scanner, pizzaDao));
 		options.put(5, new ListerPizzaGroupeParCategorieOptionMenu(pizzaDao));
 		options.put(6, new AfficherPizzaTarifPlusEleveOptionMenu(pizzaDao));
+		options.put(7, new ImporterBaseDeDonneesOptionMenu(pizzaDao));
 		options.put(99, new QuitterOptionMenu());
 	}
 

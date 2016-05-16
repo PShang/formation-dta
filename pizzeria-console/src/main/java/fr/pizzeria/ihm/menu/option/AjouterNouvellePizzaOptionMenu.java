@@ -29,7 +29,7 @@ public class AjouterNouvellePizzaOptionMenu extends AbstractOptionMenu {
 		System.out.println("Veuillez saisir le nom (sans espace)");
 		newPizza.setNom(sc.next());
 		System.out.println("Veuillez saisir le prix");
-		try {
+
 			newPizza.setPrix(sc.nextDouble());
 			
 			System.out.println("Veuillez saisir la catégorie");
@@ -44,14 +44,18 @@ public class AjouterNouvellePizzaOptionMenu extends AbstractOptionMenu {
 			
 			
 			
-			pizzaDao.savePizza(newPizza);
-			System.out.println("Nouvelle pizza créée");
+			try {
+				pizzaDao.savePizza(newPizza);
+				System.out.println("Nouvelle pizza créée");
+			} catch (InputMismatchException e) {
+				System.err.println("Input " + sc.next() + " n'est pas un nombre");
+			} catch (DaoException e) {
+				System.err.println("Echec création de pizza.La cause " + e.getMessage());
+			}
+			
+			
+			
 
-		} catch (InputMismatchException e) {
-			System.err.println("Input " + sc.next() + " n'est pas un nombre");
-		} catch (DaoException e) {
-			System.err.println("Echec création de pizza");
-		}
 		
 		
 		

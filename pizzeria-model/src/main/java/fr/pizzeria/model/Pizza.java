@@ -37,6 +37,9 @@ public class Pizza {
 		this.categorie = cat;
 	}
 
+	
+	
+	
 	public int getId() {
 		return id;
 	}
@@ -45,6 +48,9 @@ public class Pizza {
 		this.id = id;
 	}
 
+	
+	
+	
 	public String getCode() {
 		return code;
 	}
@@ -53,6 +59,9 @@ public class Pizza {
 		this.code = code;
 	}
 
+	
+	
+	
 	public String getNom() {
 		return nom;
 	}
@@ -61,6 +70,9 @@ public class Pizza {
 		this.nom = nom;
 	}
 
+	
+	
+	
 	/**
 	 * Utiliser plutôt getNouveauPrix()
 	 * @return
@@ -73,10 +85,12 @@ public class Pizza {
 		// super algo
 		return prix;
 	}
-
 	public void setPrix(double prix) {
 		this.prix = prix;
 	}
+	
+	
+	
 
 	public CategoriePizza getCategorie() {
 		return categorie;
@@ -86,8 +100,8 @@ public class Pizza {
 
 	}
 
-	public void setCategorie(CategoriePizza categorie) {
-		this.categorie = categorie;
+	public static void setCategorie(CategoriePizza categorie) {
+		
 	}
 	
 	private final static Map<String, String> FORMAT = new HashMap<String, String>();
