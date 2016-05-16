@@ -1,0 +1,8 @@
+Veuillez saisir le code
+Veuillez saisir le nom (sans espace)
+Veuillez saisir le prix
+Veuillez saisir la catégorie
+0 -> Viande
+1 -> Poisson
+2 -> Sans Viande
+Nouvelle pizza créée
