@@ -45,6 +45,9 @@ public class PizzaAdminApp {
 			break;
 		case 3:
 			System.out.println("DAO JPA");
+			/*app utilise implémentation PizzaDaoJpa, instance EntityManagerFactory de 
+			 classe javax.persistence.Persistence.*/
+			//désactiver les logs d'info Hibernate avec le code suivant:
 			java.util.logging.Logger.getLogger("org.hibernate").setLevel(Level.SEVERE);
 			EntityManagerFactory emf=Persistence.createEntityManagerFactory("pizzeria-pu");
 			lancerApplication(new PizzaDaoJPA(emf));
