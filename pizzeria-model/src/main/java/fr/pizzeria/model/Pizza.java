@@ -2,34 +2,45 @@ package fr.pizzeria.model;
 
 import java.lang.reflect.Field;
 import java.util.Arrays;
+import java.math.BigDecimal;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 public class Pizza {
-	
-	
-	
 
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	@ToString private String code;
-	@ToString(uppercase = true) private String nom;
-	@ToString 
-	private double prix;
-	@ToString 
+	
+	@ToString(uppercase = true)
+	private String nom;
+	
+	@ToString
+	private BigDecimal prix;
+	@ToString
+	@Enumerated(EnumType.STRING)
 	private CategoriePizza categorie;
-	
-	
+
 	public static int nbPizzas;
 
 	public Pizza() {
 	}
 
-	public Pizza(String code, String nom, double prix, CategoriePizza cat) {
+	public Pizza(String code, String nom, BigDecimal prix, CategoriePizza cat) {
 		this();
 		this.code = code;
 		this.nom = nom;
@@ -37,9 +48,6 @@ public class Pizza {
 		this.categorie = cat;
 	}
 
-	
-	
-	
 	public int getId() {
 		return id;
 	}
@@ -48,9 +56,6 @@ public class Pizza {
 		this.id = id;
 	}
 
-	
-	
-	
 	public String getCode() {
 		return code;
 	}
@@ -59,9 +64,6 @@ public class Pizza {
 		this.code = code;
 	}
 
-	
-	
-	
 	public String getNom() {
 		return nom;
 	}
@@ -70,43 +72,40 @@ public class Pizza {
 		this.nom = nom;
 	}
 
-	
-	
-	
 	/**
 	 * Utiliser plutôt getNouveauPrix()
+	 * 
 	 * @return
 	 */
-	public double getPrix() {
+	public BigDecimal getPrix() {
 		return prix;
 	}
-	
-	public double getNouveauPrix() {
+
+	public BigDecimal getNouveauPrix() {
 		// super algo
 		return prix;
 	}
-	public void setPrix(double prix) {
+
+	public void setPrix(BigDecimal prix) {
 		this.prix = prix;
 	}
-	
-	
-	
 
 	public CategoriePizza getCategorie() {
 		return categorie;
 	}
-	
+
 	public void cattt(Pizza p) {
 
 	}
 
-	public static void setCategorie(CategoriePizza categorie) {
-		
+	public void setCategorie(CategoriePizza categorie) {
+		this.categorie = categorie;
+
 	}
-	
+
 	private final static Map<String, String> FORMAT = new HashMap<String, String>();
 	private final static String AUTRE_FORMAT = "(%s)";
-	
+
 	static {
 		FORMAT.put("code", "%s ->");
 		FORMAT.put("nom", "%s ***");
@@ -114,80 +113,46 @@ public class Pizza {
 
 	@Override
 	public String toString() {
-		return Arrays.asList(this.getClass().getDeclaredFields())
-				.stream()
-					.filter(field -> field.getAnnotation(ToString.class) !=null)
-					.map(getValeurDuChamp())
-					.collect(Collectors.joining(" "));
+		return Arrays.asList(this.getClass().getDeclaredFields()).stream()
+				.filter(field -> field.getAnnotation(ToString.class) != null).map(getValeurDuChamp())
+				.collect(Collectors.joining(" "));
 	}
 
 	private Function<? super Field, ? extends String> getValeurDuChamp() {
 		return field -> {
-			
+
 			String resultat = "";
 			try {
-				resultat= field.getAnnotation(ToString.class).uppercase() ? field.get(this).toString().toUpperCase() : field.get(this).toString();
+				resultat = field.getAnnotation(ToString.class).uppercase() ? field.get(this).toString().toUpperCase()
+						: field.get(this).toString();
 			} catch (SecurityException | IllegalArgumentException | IllegalAccessException e1) {
-					e1.printStackTrace();
+				e1.printStackTrace();
 			}
-			
+
 			String formatResultat = FORMAT.get(field.getName()) == null ? AUTRE_FORMAT : FORMAT.get(field.getName());
-			
-			return  String.format(formatResultat, resultat);
+
+			return String.format(formatResultat, resultat);
 		};
 	}
 
 	@Override
 	public int hashCode() {
-		 return new HashCodeBuilder(17, 37).
-			       append(code).
-			       toHashCode();
+		return new HashCodeBuilder(17, 37).append(code).toHashCode();
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		 if (obj == null) { return false; }
-		   if (obj == this) { return true; }
-		   if (obj.getClass() != getClass()) {
-		     return false;
-		   }
-		   Pizza rhs = (Pizza) obj;
-		   return new EqualsBuilder()
-		                 .append(code, rhs.code)
-		                 .isEquals();
+		if (obj == null) {
+			return false;
+		}
+		if (obj == this) {
+			return true;
+		}
+		if (obj.getClass() != getClass()) {
+			return false;
+		}
+		Pizza rhs = (Pizza) obj;
+		return new EqualsBuilder().append(code, rhs.code).isEquals();
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
-	
-	
-	
-	
-	
 
 }
