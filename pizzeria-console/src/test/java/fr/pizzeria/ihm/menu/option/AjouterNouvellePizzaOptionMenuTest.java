@@ -1,9 +1,11 @@
 package fr.pizzeria.ihm.menu.option;
 
-import static org.junit.Assert.*;
-import static org.junit.contrib.java.lang.system.TextFromStandardInputStream.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.contrib.java.lang.system.TextFromStandardInputStream.emptyStandardInputStream;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
@@ -48,7 +50,7 @@ public class AjouterNouvellePizzaOptionMenuTest {
 		assertTrue(pizzaOpt.isPresent());
 		Pizza pizza = pizzaOpt.get();
 		assertEquals("NewPizza", pizza.getNom());
-		assertTrue(12.5 == pizza.getPrix());
+		assertEquals(BigDecimal.valueOf(12.5), pizza.getPrix());
 		assertEquals(CategoriePizza.VIANDE, pizza.getCategorie());
 		
 		String outAttendu = Files.lines(Paths.get("src/test/resources/fr/pizzeria/ihm/menu/option/resultatAjouterNouvellePizza.txt")).collect(Collectors.joining(System.lineSeparator()));

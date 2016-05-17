@@ -65,32 +65,39 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>${junit.version}</version>
-			<scope>test</scope>
+
 		</dependency>
 		<dependency>
 			<groupId>com.github.stefanbirkner</groupId>
 			<artifactId>system-rules</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.hibernate.javax.persistence</groupId>
+			<artifactId>hibernate-jpa-2.1-api</artifactId>
+
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+		</dependency>
 	</dependencies>
 
 	<profiles>
 		<profile>
-			<id>dev</id>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
-			<properties>
+			<!--<properties> -->
+				<id>dev</id>
+				<activation>
+					<activeByDefault>true</activeByDefault>
+				</activation>
 
-				<dao.impl>2</dao.impl>
-				<jdbc.driver>com.mysql.jdbc.Driver</jdbc.driver>
-				<jdbc.url>jdbc:mysql://localhost:8889/pizzeriadb</jdbc.url>
-				<jdbc.user>pizzeriadb</jdbc.user>
-				<jdbc.pass>pizzeriadb</jdbc.pass>
-
-			</properties>
+				<properties>
+					<dao.impl>2</dao.impl>
+					<jdbc.driver>com.mysql.jdbc.Driver</jdbc.driver>
+					<jdbc.url>jdbc:mysql://localhost:8889/pizzeriadb</jdbc.url>
+					<jdbc.user>pizzeriadb</jdbc.user>
+					<jdbc.pass>pizzeriadb</jdbc.pass>
+				</properties>
 		</profile>
-
 		<profile>
 			<id>prod</id>
 			<properties>

@@ -22,9 +22,11 @@ public boolean execute()
 	{
 		PizzaDaoFichierImpl daoFichierImpl = new PizzaDaoFichierImpl();
 		List<Pizza> listPizzas = daoFichierImpl.findAllPizzas();
-		pizzaDao.saveAllPizza(listPizzas, 3);
-	}catch (DaoException e) {System.err.println(e, getMessage));}
+		pizzaDao.saveAllPizzas(listPizzas, 3);
+	}catch (DaoException e) {
+		System.err.println(e.getMessage());}  //recupere le msg de l'exception
 	return true;
+
 }
 }
 

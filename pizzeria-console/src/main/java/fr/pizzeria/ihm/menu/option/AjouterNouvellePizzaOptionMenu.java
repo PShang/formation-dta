@@ -1,9 +1,9 @@
 package fr.pizzeria.ihm.menu.option;
 
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-import java.util.stream.Stream;
 
 import fr.pizzeria.dao.IPizzaDao;
 import fr.pizzeria.exception.DaoException;
@@ -29,38 +29,28 @@ public class AjouterNouvellePizzaOptionMenu extends AbstractOptionMenu {
 		System.out.println("Veuillez saisir le nom (sans espace)");
 		newPizza.setNom(sc.next());
 		System.out.println("Veuillez saisir le prix");
+		try {
 
-			newPizza.setPrix(sc.nextDouble());
-			
+			newPizza.setPrix(BigDecimal.valueOf(sc.nextDouble()));
+
 			System.out.println("Veuillez saisir la catégorie");
-			
+
 			CategoriePizza[] categoriePizzas = CategoriePizza.values();
 
-			
-			Arrays.asList(categoriePizzas).forEach(cat -> System.out.println(cat.ordinal() + " -> " + cat.getLibelle()));
-			
+			Arrays.asList(categoriePizzas)
+					.forEach(cat -> System.out.println(cat.ordinal() + " -> " + cat.getLibelle()));
+
 			int saisieCategorie = sc.nextInt();
 			newPizza.setCategorie(categoriePizzas[saisieCategorie]);
-			
-			
-			
-			try {
-				pizzaDao.savePizza(newPizza);
-				System.out.println("Nouvelle pizza créée");
-			} catch (InputMismatchException e) {
-				System.err.println("Input " + sc.next() + " n'est pas un nombre");
-			} catch (DaoException e) {
-				System.err.println("Echec création de pizza.La cause " + e.getMessage());
-			}
-			
-			
-			
 
-		
-		
-		
-		
-		
+			pizzaDao.savePizza(newPizza);
+			System.out.println("Nouvelle pizza créée");
+		} catch (InputMismatchException e) {
+			System.err.println("Input " + sc.next() + " n'est pas un nombre");
+		} catch (DaoException e) {
+			System.err.println("Echec création de pizza.La cause " + e.getMessage());
+		}
+
 		return true;
 	}
 

@@ -3,10 +3,16 @@ package fr.pizzeria.console;
 import java.io.IOException;
 import java.util.ResourceBundle;
 import java.util.Scanner;
+import java.util.logging.Level;
+
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.EntityManager;
 
 import fr.pizzeria.dao.IPizzaDao;
 import fr.pizzeria.dao.PizzaDaoFichierImpl;
 import fr.pizzeria.dao.PizzaDaoImpl;
+import fr.pizzeria.dao.PizzaDaoJPA;
 import fr.pizzeria.dao.PizzeDaoJDBC;
 import fr.pizzeria.exception.DaoException;
 import fr.pizzeria.ihm.menu.Menu;
@@ -14,8 +20,6 @@ import fr.pizzeria.ihm.menu.Menu;
 public class PizzaAdminApp {
 
 	public static void main(String[] args) throws IOException, ClassNotFoundException, DaoException {
-
-		/* String.format("tooo %s %s '%s' ", "", "", ""); */
 
 		ResourceBundle bundle = ResourceBundle.getBundle("application");
 		String confString = bundle.getString("dao.impl");
@@ -37,8 +41,14 @@ public class PizzaAdminApp {
 			String url = jdbcBundle.getString("jdbc.url");
 			String user = jdbcBundle.getString("jdbc.user");
 			String pass = jdbcBundle.getString("jdbc pass");
-			/* Class.forName("com.mysqi.jdbc.Driver"); */
 			lancerApplication(new PizzeDaoJDBC(driver, url, user, pass));
+			break;
+		case 3:
+			System.out.println("DAO JPA");
+			java.util.logging.Logger.getLogger("org.hibernate").setLevel(Level.SEVERE);
+			EntityManagerFactory emf=Persistence.createEntityManagerFactory("pizzeria-pu");
+			lancerApplication(new PizzaDaoJPA(emf));
+			emf.close();
 			break;
 		default:
 			System.err.println(

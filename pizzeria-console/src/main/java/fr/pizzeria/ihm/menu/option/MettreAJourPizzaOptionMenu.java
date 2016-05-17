@@ -1,5 +1,6 @@
 package fr.pizzeria.ihm.menu.option;
 
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -32,7 +33,7 @@ public class MettreAJourPizzaOptionMenu extends AbstractOptionMenu {
 		System.out.println("Veuillez saisir le nom (sans espace)");
 		updatePizza.setNom(sc.next());
 		System.out.println("Veuillez saisir le prix");
-		updatePizza.setPrix(sc.nextDouble());
+		updatePizza.setPrix(BigDecimal.valueOf(sc.nextDouble()));
 		CategoriePizza[] categoriePizzas = CategoriePizza.values();
 		Arrays.asList(categoriePizzas).forEach(cat -> System.out.println(cat.ordinal() + " -> " + cat.getLibelle()));
 		
