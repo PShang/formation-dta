@@ -22,13 +22,14 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 public class Pizza {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	@ToString private String code;
-	
+	@ToString
+	private String code;
+
 	@ToString(uppercase = true)
 	private String nom;
-	
+
 	@ToString
 	private BigDecimal prix;
 	@ToString
@@ -139,6 +140,17 @@ public class Pizza {
 	public int hashCode() {
 		return new HashCodeBuilder(17, 37).append(code).toHashCode();
 	}
+
+public String toJson(){
+	StringBuilder sb = new StringBuilder("{");
+	sb.append("nom:")
+    .append(this.getNom())
+    .append(".")
+    .append("code:")
+    .append(this.getCode())
+    .append("}");
+    return sb.toString();
+}
 
 	@Override
 	public boolean equals(Object obj) {

@@ -80,6 +80,7 @@
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
 		</dependency>
+	
 	</dependencies>
 
 	<profiles>

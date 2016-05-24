@@ -23,6 +23,8 @@
 		<mysql.version>5.1.38</mysql.version>
 		<hibernate-jpa.version>1.0.0.Final</hibernate-jpa.version>
 		<hibernate.version>5.1.0.Final</hibernate.version>
+		<servlet.version>3.1.0</servlet.version>
+		
 	</properties>
 
 	<dependencyManagement>
@@ -75,6 +77,13 @@
 				<artifactId>hibernate-entitymanager</artifactId>
 				<version>${hibernate.version}</version>
 				<scope>runtime</scope>
+			</dependency>
+			<!-- http://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>javax.servlet-api</artifactId>
+				<version>${servlet.version}</version>
+				<scope>provided</scope>
 			</dependency>
 
 		</dependencies>
