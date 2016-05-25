@@ -47,7 +47,8 @@ public class PizzaServletWebApi extends HttpServlet {
 		String nom = req.getParameter("nom");
 		String prix = req.getParameter("prix");
 		String cat = req.getParameter("categorie");
-
+		String url = req.getParameter("UrlImage");
+		
 		if (StringUtils.isBlank(code) || StringUtils.isBlank(nom) || StringUtils.isBlank(prix)
 				|| StringUtils.isBlank(cat)) {
 			resp.sendError(400, "Non");

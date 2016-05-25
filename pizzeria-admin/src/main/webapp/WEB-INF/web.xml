@@ -6,12 +6,34 @@
 	<display-name>Archetype Created Web Application</display-name>
 
 	<servlet>
+		<servlet-name>ListerPizzaController</servlet-name>
+		<servlet-class>fr.pizzeria.admin.web.ListerPizzaController</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>PizzaServletWeb</servlet-name>
+		<servlet-class>fr.pizzeria.admin.web.PizzaServletWeb</servlet-class>
+	</servlet>
+
+
+	<servlet>
 		<servlet-name>PizzaServletWebApi</servlet-name>
 		<servlet-class>fr.pizzeria.admin.web.PizzaServletWebApi</servlet-class>
 	</servlet>
 
 	<servlet-mapping>
+		<servlet-name>ListerPizzaController</servlet-name>
+		<url-pattern>/pizzas/list</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>PizzaServletWeb</servlet-name>
+		<url-pattern>/servlet/pizzas</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
 		<servlet-name>PizzaServletWebApi</servlet-name>
 		<url-pattern>/api/servlet/pizzas</url-pattern>
 	</servlet-mapping>
+
 </web-app>
