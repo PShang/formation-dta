@@ -1,7 +1,5 @@
 # formation-dta
-[![Build Status](http://ns377570.ip-5-196-89.eu:8080/job/Shang%20Pagotto-Pizzeria-Build/badge/icon)](http://ns377570.ip-5-196-89.eu:8080/job/Shang%20Pagotto-Pizzeria-Build/)
-
-Ce dépôt contient les projets réalisés pendant la formation DTA.
+[![Build Status](http://ns377570.ip-5-196-89.eu:8080/job/Shang%20Pagotto-Pizzeria-Build/badge/icon)](http://ns377570.ip-5-196-89.eu:8080/job/Shang%20Pagotto-Pizzeria-Build/)Ce dépôt contient les projets réalisés pendant la formation DTA.
 
 ## pizzeria-console-imperative
 Une application qui permet de manipuler une entité Pizza.
