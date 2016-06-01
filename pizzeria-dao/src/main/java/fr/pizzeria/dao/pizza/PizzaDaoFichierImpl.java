@@ -8,18 +8,32 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.NotImplementedException;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.stereotype.Repository;
 
 import fr.pizzeria.exception.DaoException;
 import fr.pizzeria.model.CategoriePizza;
 import fr.pizzeria.model.Pizza;
 
+@Repository
+@Lazy
 public class PizzaDaoFichierImpl implements IPizzaDao {
 	
+	private static final Logger LOG = Logger.getLogger(PizzaDaoFichierImpl.class.toString());
+	
 	private static final String REPERTOIRE_DATA = "data";
+	
+	
 
+	public PizzaDaoFichierImpl() {
+		LOG.log(Level.INFO, "Création du bean PizzaDaoFichierImpl");
+	}
+	
 	@Override
 	public List<Pizza> findAllPizzas() throws DaoException {
 		

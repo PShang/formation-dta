@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+    <head>
+        <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    </head>
+    <body>
+        <h1>Test Cors</h1>
+         <script>
+
+            
+             $.get('http://localhost:8080/pizzeria-admin-web/api/pizzas', function(data) {
+                  console.log('success',data);
+             }).fail(function(err){
+                 console.log('error',err);
+             });
+             
+
+     
+         </script>
+    </body>
+    
+</html>

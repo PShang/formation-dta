@@ -149,16 +149,6 @@ public class Pizza {
 		return new HashCodeBuilder(17, 37).append(code).toHashCode();
 	}
 
-	
-	
-	public String toJson() {
-		StringBuilder sb = new StringBuilder("{");
-		sb.append("\"nom\":\"").append(this.getNom()).append("\",")
-		.append("\"code\":\"").append(this.getCode()).append("\"")
-		.append("}");
-		return sb.toString();
-	}
-
 	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
