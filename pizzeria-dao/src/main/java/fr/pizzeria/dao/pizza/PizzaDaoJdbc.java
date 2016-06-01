@@ -1,15 +1,16 @@
-package fr.pizzeria.dao;
+package fr.pizzeria.dao.pizza;
 
 import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.sql.PreparedStatement;
+
 import org.apache.commons.collections4.ListUtils;
 
 import fr.pizzeria.exception.DaoException;
@@ -19,18 +20,18 @@ import fr.pizzeria.exception.UpdatePizzaException;
 import fr.pizzeria.model.CategoriePizza;
 import fr.pizzeria.model.Pizza;
 
-public class PizzeDaoJDBC implements IPizzaDao {
+public class PizzaDaoJdbc implements IPizzaDao {
+
 	private String url;
 	private String user;
 	private String pass;
 
-	public PizzeDaoJDBC(String driver, String url2, String user2, String pass2) throws DaoException {
+	public PizzaDaoJdbc(String driver, String url2, String user2, String pass2) throws DaoException {
 		try {
-			Class.forName("com.mysqi.jdbc.Driver");
+			Class.forName(driver);
 			this.url = url2;
 			this.user = user2;
 			this.pass = pass2;
-
 		} catch (ClassNotFoundException e) {
 			throw new DaoException(e);
 		}
@@ -72,8 +73,7 @@ public class PizzeDaoJDBC implements IPizzaDao {
 	}
 
 	private void insertPizza(Connection connection, Pizza newPizza) throws DaoException {
-		try (PreparedStatement st = connection
-				.prepareStatement("insert into pizza(code,nom,prix,categorie) VALUES(?,?,?,?)");) {
+		try (PreparedStatement st = connection.prepareStatement("insert into pizza(code,nom,prix,categorie) VALUES(?,?,?,?)");) {
 			st.setString(1, newPizza.getCode());
 			st.setString(2, newPizza.getNom());
 			st.setDouble(3, newPizza.getPrix().doubleValue());
@@ -92,9 +92,8 @@ public class PizzeDaoJDBC implements IPizzaDao {
 	@Override
 	public void updatePizza(String codePizza, Pizza updatePizza) throws DaoException {
 		try (Connection connection = getConnection(); Statement st = connection.createStatement();) {
-			int nbLignesAffectes = st.executeUpdate(String.format(
-					"update pizza set code='%s',nom='%s',prix=%s,categorie='%s' where code='%s'", updatePizza.getCode(),
-					updatePizza.getNom(), updatePizza.getPrix(), updatePizza.getCategorie().name(), codePizza));
+			int nbLignesAffectes = st.executeUpdate(String.format("update pizza set code='%s',nom='%s',prix=%s,categorie='%s' where code='%s'",
+					updatePizza.getCode(), updatePizza.getNom(), updatePizza.getPrix(), updatePizza.getCategorie().name(), codePizza));
 
 			if (nbLignesAffectes == 0) {
 				throw new UpdatePizzaException("Aucune ligne mise à jour en base de données");
@@ -137,8 +136,7 @@ public class PizzeDaoJDBC implements IPizzaDao {
 
 	}
 
-	private void insertListerPizzas(List<List<Pizza>> listPartitionnee, Connection connection)
-			throws SQLException, DaoException {
+	private void insertListerPizzas(List<List<Pizza>> listPartitionnee, Connection connection) throws SQLException, DaoException {
 		try {
 			for (List<Pizza> list : listPartitionnee) {
 				for (Pizza p : list) {

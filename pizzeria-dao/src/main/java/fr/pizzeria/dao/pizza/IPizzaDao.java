@@ -1,4 +1,5 @@
-package fr.pizzeria.dao;
+package fr.pizzeria.dao.pizza;
+
 
 import java.util.List;
 
@@ -14,4 +15,3 @@ public interface IPizzaDao {
 	void saveAllPizzas(List<Pizza> listPizzas, int nb) throws DaoException;
 
 }
-

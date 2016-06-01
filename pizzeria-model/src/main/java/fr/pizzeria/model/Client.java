@@ -8,32 +8,31 @@ import javax.persistence.Table;
 
 @Entity
 public class Client {
-
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int id;
-	public String nom;
-	public String prenom;
+	private Integer id;
+	private String nom;
+	private String prenom;
+	private String email;
 	private String motDePasse;
-	public String mail;
-
 	
-	public Client(int id, String nom, String prenom, String mail, String motDePasse)
-	{
-	super();
-	this.id=id;
-	this.nom=nom;
-	this.prenom=prenom;
-	this.mail=mail;
-	this.motDePasse=motDePasse;
-}
-	public Client(String nom, String prenom, String mail, String motDePasse)
-	{
+	
+	
+	public Client(Integer id, String nom, String prenom, String email, String motDePasse) {
 		super();
-		this.nom=nom;
-		this.prenom=prenom;
-		this.mail=mail;
-		this.motDePasse=motDePasse;
+		this.id = id;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.email = email;
+		this.motDePasse = motDePasse;
+	}
+	public Client(String nom, String prenom, String email, String motDePasse) {
+		super();
+		this.nom = nom;
+		this.prenom = prenom;
+		this.email = email;
+		this.motDePasse = motDePasse;
 	}
 	public Client() {
 		super();
@@ -58,10 +57,10 @@ public class Client {
 		this.prenom = prenom;
 	}
 	public String getEmail() {
-		return mail;
+		return email;
 	}
 	public void setEmail(String email) {
-		this.mail = email;
+		this.email = email;
 	}
 	public String getMotDePasse() {
 		return motDePasse;
@@ -69,5 +68,7 @@ public class Client {
 	public void setMotDePasse(String motDePasse) {
 		this.motDePasse = motDePasse;
 	}
+	
+	
 
 }

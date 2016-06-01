@@ -1,10 +1,9 @@
 package fr.pizzeria.model;
 
 import java.lang.reflect.Field;
-import java.util.Arrays;
 import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -19,26 +18,33 @@ import javax.persistence.Id;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
+@Entity
 public class Pizza {
+	
+	private final static Map<String, String> FORMAT = new HashMap<String, String>();
+	private final static String AUTRE_FORMAT = "(%s)";
+
+	static {
+		FORMAT.put("code", "%s ->");
+		FORMAT.put("nom", "%s ***");
+	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 	@ToString
 	private String code;
-
 	@ToString(uppercase = true)
 	private String nom;
-
 	@ToString
 	private BigDecimal prix;
 	@ToString
 	@Enumerated(EnumType.STRING)
 	private CategoriePizza categorie;
-
-	public static int nbPizzas;
+	private String urlImage;
 
 	public Pizza() {
+		// implémentation par défaut
 	}
 
 	public Pizza(String code, String nom, BigDecimal prix, CategoriePizza cat) {
@@ -49,11 +55,20 @@ public class Pizza {
 		this.categorie = cat;
 	}
 
-	public int getId() {
+	public Pizza(Integer id, String code, String nom, BigDecimal prix, CategoriePizza categorie, String urlImage) {
+		this.code = code;
+		this.nom = nom;
+		this.prix = prix;
+		this.categorie = categorie;
+		this.urlImage = urlImage;
+		this.id = id;
+	}
+
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -95,28 +110,22 @@ public class Pizza {
 		return categorie;
 	}
 
-	public void cattt(Pizza p) {
-
-	}
-
 	public void setCategorie(CategoriePizza categorie) {
 		this.categorie = categorie;
-
 	}
 
-	private final static Map<String, String> FORMAT = new HashMap<String, String>();
-	private final static String AUTRE_FORMAT = "(%s)";
+	public String getUrlImage() {
+		return urlImage;
+	}
 
-	static {
-		FORMAT.put("code", "%s ->");
-		FORMAT.put("nom", "%s ***");
+	public void setUrlImage(String urlImage) {
+		this.urlImage = urlImage;
 	}
 
 	@Override
 	public String toString() {
-		return Arrays.asList(this.getClass().getDeclaredFields()).stream()
-				.filter(field -> field.getAnnotation(ToString.class) != null).map(getValeurDuChamp())
-				.collect(Collectors.joining(" "));
+		return Arrays.asList(this.getClass().getDeclaredFields()).stream().filter(field -> field.getAnnotation(ToString.class) != null)
+				.map(getValeurDuChamp()).collect(Collectors.joining(" "));
 	}
 
 	private Function<? super Field, ? extends String> getValeurDuChamp() {
@@ -124,8 +133,7 @@ public class Pizza {
 
 			String resultat = "";
 			try {
-				resultat = field.getAnnotation(ToString.class).uppercase() ? field.get(this).toString().toUpperCase()
-						: field.get(this).toString();
+				resultat = field.getAnnotation(ToString.class).uppercase() ? field.get(this).toString().toUpperCase() : field.get(this).toString();
 			} catch (SecurityException | IllegalArgumentException | IllegalAccessException e1) {
 				e1.printStackTrace();
 			}
@@ -141,16 +149,15 @@ public class Pizza {
 		return new HashCodeBuilder(17, 37).append(code).toHashCode();
 	}
 
-public String toJson(){
-	StringBuilder sb = new StringBuilder("{");
-	sb.append("nom:")
-    .append(this.getNom())
-    .append(".")
-    .append("code:")
-    .append(this.getCode())
-    .append("}");
-    return sb.toString();
-}
+	
+	
+	public String toJson() {
+		StringBuilder sb = new StringBuilder("{");
+		sb.append("\"nom\":\"").append(this.getNom()).append("\",")
+		.append("\"code\":\"").append(this.getCode()).append("\"")
+		.append("}");
+		return sb.toString();
+	}
 
 	@Override
 	public boolean equals(Object obj) {

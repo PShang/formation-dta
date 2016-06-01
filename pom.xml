@@ -9,7 +9,9 @@
 	<modules>
 		<module>pizzeria-model</module>
 		<module>pizzeria-dao</module>
-		<module>pizzeria-console</module>
+		<module>pizzeria-console-objet-java8</module>
+		<module>pizzeria-console-client</module>
+		<module>pizzeria-console-ihm-lib</module>
 	</modules>
 
 	<properties>
@@ -23,8 +25,8 @@
 		<mysql.version>5.1.38</mysql.version>
 		<hibernate-jpa.version>1.0.0.Final</hibernate-jpa.version>
 		<hibernate.version>5.1.0.Final</hibernate.version>
+		<commons-codec.version>1.10</commons-codec.version>
 		<servlet.version>3.1.0</servlet.version>
-		
 	</properties>
 
 	<dependencyManagement>
@@ -40,14 +42,14 @@
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>org.apache.commons</groupId>
-				<artifactId>commons-lang3</artifactId>
-				<version>${commons-lang.version}</version>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>pizzeria-console-ihm-lib</artifactId>
+				<version>${project.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.apache.commons</groupId>
-				<artifactId>commons-collections4</artifactId>
-				<version>${commons-collections.version}</version>
+				<artifactId>commons-lang3</artifactId>
+				<version>${commons-lang.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>junit</groupId>
@@ -68,6 +70,11 @@
 				<scope>runtime</scope>
 			</dependency>
 			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-collections4</artifactId>
+				<version>${commons-collections.version}</version>
+			</dependency>
+			<dependency>
 				<groupId>org.hibernate.javax.persistence</groupId>
 				<artifactId>hibernate-jpa-2.1-api</artifactId>
 				<version>${hibernate-jpa.version}</version>
@@ -78,7 +85,11 @@
 				<version>${hibernate.version}</version>
 				<scope>runtime</scope>
 			</dependency>
-			<!-- http://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
+			<dependency>
+				<groupId>commons-codec</groupId>
+				<artifactId>commons-codec</artifactId>
+				<version>${commons-codec.version}</version>
+			</dependency>
 			<dependency>
 				<groupId>javax.servlet</groupId>
 				<artifactId>javax.servlet-api</artifactId>
@@ -100,9 +111,34 @@
 						<target>1.8</target>
 					</configuration>
 				</plugin>
+
 			</plugins>
 		</pluginManagement>
+
 	</build>
 
+	<profiles>
+		<profile>
+			<id>dev</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<dao.impl>2</dao.impl>
+				<jdbc.driver>com.mysql.jdbc.Driver</jdbc.driver>
+				<jdbc.url>jdbc:mysql://localhost:8889/pizzeriadb</jdbc.url>
+				<jdbc.user>pizzeriadb</jdbc.user>
+				<jdbc.pass>pizzeriadb</jdbc.pass>
+			</properties>
+		</profile>
+
+		<profile>
+			<id>prod</id>
+			<properties>
+				<dao.impl>2</dao.impl>
+			</properties>
+		</profile>
+
+	</profiles>
+
 </project>
-				
