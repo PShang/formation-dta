@@ -6,6 +6,7 @@ import java.util.List;
 import fr.pizzeria.exception.DaoException;
 import fr.pizzeria.model.Pizza;
 import org.apache.commons.lang3.NotImplementedException;
+import org.springframework.transaction.TransactionStatus;
 
 public interface IPizzaDao {
 
@@ -21,5 +22,7 @@ public interface IPizzaDao {
 	void updatePizza(String codePizza, Pizza updatePizza) throws DaoException;
 	void deletePizza(String codePizza) throws DaoException;
 	void saveAllPizzas(List<Pizza> listPizzas, int nb) throws DaoException;
+
+	Pizza doInTransaction(TransactionStatus status);
 
 }

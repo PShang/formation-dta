@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 import org.apache.commons.lang3.NotImplementedException;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.TransactionStatus;
 
 import fr.pizzeria.exception.DaoException;
 import fr.pizzeria.model.CategoriePizza;
@@ -96,6 +97,12 @@ public class PizzaDaoFichierImpl implements IPizzaDao {
 	public void saveAllPizzas(List<Pizza> listPizzas, int nb) throws DaoException {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public Pizza doInTransaction(TransactionStatus status) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

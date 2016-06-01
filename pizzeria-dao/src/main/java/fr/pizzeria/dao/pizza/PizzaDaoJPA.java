@@ -13,6 +13,7 @@ import org.apache.commons.collections4.ListUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.TransactionStatus;
 
 import fr.pizzeria.exception.DaoException;
 import fr.pizzeria.model.Pizza;
@@ -96,6 +97,12 @@ public class PizzaDaoJPA implements IPizzaDao {
 		
 		em.close();
 
+	}
+
+	@Override
+	public Pizza doInTransaction(TransactionStatus status) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

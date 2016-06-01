@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 import org.apache.commons.lang3.NotImplementedException;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.TransactionStatus;
 
 import fr.pizzeria.exception.DaoException;
 import fr.pizzeria.exception.DeletePizzaException;
@@ -84,5 +85,11 @@ public class PizzaDaoMemoire implements IPizzaDao {
 	@Override
 	public Pizza findOnePizza(String code) throws DaoException {
 		return pizzas.get(code);
+	}
+
+	@Override
+	public Pizza doInTransaction(TransactionStatus status) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

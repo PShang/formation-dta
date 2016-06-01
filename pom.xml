@@ -153,9 +153,9 @@
 			<properties>
 				<dao.impl>2</dao.impl>
 				<jdbc.driver>com.mysql.jdbc.Driver</jdbc.driver>
-				<jdbc.url>jdbc:mysql://localhost:8889/pizzeriadb</jdbc.url>
-				<jdbc.user>pizzeriadb</jdbc.user>
-				<jdbc.pass>pizzeriadb</jdbc.pass>
+				<jdbc.url>jdbc:mysql://localhost:3306/pizzeria</jdbc.url>
+				<jdbc.user>pizzeria</jdbc.user>
+				<jdbc.pass>pizzeria</jdbc.pass>
 			</properties>
 		</profile>
 

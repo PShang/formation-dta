@@ -64,6 +64,11 @@ public class Pizza {
 		this.id = id;
 	}
 
+	public Pizza(String string, String string2, double double1, CategoriePizza valueOf) {
+		// TODO Auto-generated constructor stub
+	}
+
+
 	public Integer getId() {
 		return id;
 	}
