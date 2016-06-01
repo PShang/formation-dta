@@ -2,7 +2,7 @@ package fr.pizzeria.ihm.menu.option;
 
 import java.util.Comparator;
 
-import fr.pizzeria.dao.IPizzaDao;
+import fr.pizzeria.dao.DaoFactory;
 import fr.pizzeria.exception.DaoException;
 import fr.pizzeria.model.Pizza;
 
@@ -10,8 +10,8 @@ public class ListerPizzaOptionMenu extends AbstractOptionMenu {
 
 	private static final String LISTER_PIZZAS_LIBELLE_MENU = "Lister Pizzas";
 
-	public ListerPizzaOptionMenu(IPizzaDao pizzaDao) {
-		super(LISTER_PIZZAS_LIBELLE_MENU, pizzaDao);
+	public ListerPizzaOptionMenu(DaoFactory dao) {
+		super(LISTER_PIZZAS_LIBELLE_MENU, dao, null); // pas d'utilisation de SC
 	}
 
 	@Override
@@ -19,7 +19,7 @@ public class ListerPizzaOptionMenu extends AbstractOptionMenu {
 		System.out.println("Lister Pizza Menu");
 
 		try {
-			pizzaDao.findAllPizzas().stream()
+			daoFactory.getPizzaDao().findAllPizzas().stream()
 				.sorted(Comparator.comparing(Pizza::getCode))
 				.forEach(System.out::println);
 		} catch (DaoException e) {

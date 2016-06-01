@@ -3,7 +3,7 @@ package fr.pizzeria.ihm.menu.option;
 import java.util.Comparator;
 import java.util.stream.Collectors;
 
-import fr.pizzeria.dao.IPizzaDao;
+import fr.pizzeria.dao.DaoFactory;
 import fr.pizzeria.exception.DaoException;
 import fr.pizzeria.model.Pizza;
 
@@ -13,15 +13,15 @@ public class ListerPizzaGroupeParCategorieOptionMenu extends AbstractOptionMenu 
 
 	
 	
-	public ListerPizzaGroupeParCategorieOptionMenu(IPizzaDao pizzaDao) {
-		super(LISTER_PIZZAS_LIBELLE_MENU, pizzaDao);
+	public ListerPizzaGroupeParCategorieOptionMenu(DaoFactory dao) {
+		super(LISTER_PIZZAS_LIBELLE_MENU, dao, null);
 	}
 
 	@Override
 	public boolean execute() {
 		
 		try {
-			pizzaDao.findAllPizzas().stream()
+			daoFactory.getPizzaDao().findAllPizzas().stream()
 				.collect(Collectors.groupingBy(Pizza::getCategorie))
 				.forEach((categorie,listePizzas) -> {
 					System.out.println(categorie.getLibelle());

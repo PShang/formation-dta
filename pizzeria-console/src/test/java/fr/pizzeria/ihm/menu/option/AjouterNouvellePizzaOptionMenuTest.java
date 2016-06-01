@@ -9,6 +9,7 @@ import java.math.BigDecimal;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 import java.util.Scanner;
 import java.util.stream.Collectors;
@@ -19,8 +20,9 @@ import org.junit.Test;
 import org.junit.contrib.java.lang.system.SystemOutRule;
 import org.junit.contrib.java.lang.system.TextFromStandardInputStream;
 
-import fr.pizzeria.dao.IPizzaDao;
-import fr.pizzeria.dao.PizzaDaoImpl;
+import fr.pizzeria.dao.DaoFactory;
+import fr.pizzeria.dao.DaoProducer;
+import fr.pizzeria.dao.pizza.IPizzaDao;
 import fr.pizzeria.exception.DaoException;
 import fr.pizzeria.model.CategoriePizza;
 import fr.pizzeria.model.Pizza;
@@ -35,9 +37,11 @@ public class AjouterNouvellePizzaOptionMenuTest {
 
 	@Before
 	public void setUp() throws Exception {
+		Locale.setDefault(Locale.FRENCH);
 		Scanner scanner = new Scanner(System.in);
-		pizzaDao = new PizzaDaoImpl(); 
-		optionMenu = new AjouterNouvellePizzaOptionMenu(scanner, pizzaDao);
+		DaoFactory daoFactory = new DaoProducer().getDaoFactoryMemoire();
+		pizzaDao = daoFactory.getPizzaDao(); 
+		optionMenu = new AjouterNouvellePizzaOptionMenu(scanner, daoFactory);
 	}
 
 	@Test
@@ -60,6 +64,16 @@ public class AjouterNouvellePizzaOptionMenuTest {
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
+
+}
 	
 	
 	

@@ -80,31 +80,15 @@
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
 		</dependency>
-	
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+		</dependency>
 	</dependencies>
 
-	<profiles>
-		<profile>
-			<!--<properties> -->
-				<id>dev</id>
-				<activation>
-					<activeByDefault>true</activeByDefault>
-				</activation>
 
-				<properties>
-					<dao.impl>2</dao.impl>
-					<jdbc.driver>com.mysql.jdbc.Driver</jdbc.driver>
-					<jdbc.url>jdbc:mysql://localhost:8889/pizzeriadb</jdbc.url>
-					<jdbc.user>pizzeriadb</jdbc.user>
-					<jdbc.pass>pizzeriadb</jdbc.pass>
-				</properties>
-		</profile>
-		<profile>
-			<id>prod</id>
-			<properties>
-				<dao.impl>2</dao.impl>
-			</properties>
-		</profile>
-
-	</profiles>
 </project>
