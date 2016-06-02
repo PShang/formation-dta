@@ -1,4 +1,4 @@
-/*package fr.pizzeria.dao.pizza;
+package fr.pizzeria.dao.pizza;
 
 import java.util.Comparator;
 import java.util.List;
@@ -6,116 +6,89 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-import javax.sql.DataSource;
 
 import org.apache.commons.collections4.ListUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
-import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.TransactionStatus;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.transaction.annotation.Transactional;
 
 import fr.pizzeria.exception.DaoException;
 import fr.pizzeria.model.Pizza;
 
-@Configuration
-@ComponentScan("fr.pizzeria.dao")
-@EnableTransactionManagement
-public class PizzaDaoSpring {
-	@Bean
-	public DataSource dataSource() {
-		return new EmbeddedDatabaseBuilder().
-				setType(EmbeddedDatabaseType.H2).
-				addScript("db-schema.sql").
-				addScript("db-data.sql").build();
-	}
-	private static final Logger LOG = Logger.getLogger(PizzaDaoJPA.class.toString());
+@Repository
+@Lazy
+public class PizzaDaoSpring implements IPizzaDao {
+
+	private static final Logger LOG = Logger.getLogger(PizzaDaoSpring.class.toString());
 
 	@PersistenceContext
 	private EntityManager em;
 
 	@Autowired
+	private BatchPizzaDaoJpaSpring batchPizzaDaoJpaSpring;
+
 	public PizzaDaoSpring() {
 		super();
-		this.emf = emf;
-		LOG.log(Level.INFO, "Création du bean PizzaDaoJPA");
+		LOG.log(Level.INFO, "création du bean PizzaDaoSpring");
+	}
+
+	@Override
+	public Pizza findOnePizza(String code) throws DaoException {
+		try {
+			TypedQuery<Pizza> query = em.createQuery("select p from Pizza p where code= : codePizza", Pizza.class);
+			query.setParameter("codePizza", code);
+			return query.getSingleResult();
+		} catch (NoResultException e) {
+			return null;
+		}
 	}
 
 	@Override
 	public List<Pizza> findAllPizzas() throws DaoException {
-		EntityManager em = emf.createEntityManager();
-		List<Pizza> listPizzas = em.createQuery("select p from Pizza p", Pizza.class).getResultList();
-		em.close();
-		return listPizzas;
+		return em.createQuery("select p from Pizza p", Pizza.class).getResultList();
 	}
 
 	@Override
+	@Transactional
 	public void savePizza(Pizza newPizza) throws DaoException {
-		EntityManager em = emf.createEntityManager();
-		em.getTransaction().begin();
 		em.persist(newPizza);
-		em.getTransaction().commit();
-		em.close();
 	}
 
 	@Override
+	@Transactional
 	public void updatePizza(String codePizza, Pizza updatePizza) throws DaoException {
-		EntityManager em = emf.createEntityManager();
-		try {
-			em.getTransaction().begin();
-			TypedQuery<Pizza> query = em.createQuery("select p from Pizza p where code=:codePizza", Pizza.class);
-			query.setParameter("codePizza", codePizza);
-			Pizza pizza = query.getSingleResult();
-			pizza.setCode(updatePizza.getCode());
-			pizza.setNom(updatePizza.getNom());
-			pizza.setPrix(updatePizza.getPrix());
-			pizza.setCategorie(updatePizza.getCategorie());
-			em.getTransaction().commit();
-		} finally {
-			em.close();
-		}
+
+		TypedQuery<Pizza> query = em.createQuery("select p from Pizza p where code=:codePizza", Pizza.class);
+		query.setParameter("codePizza", codePizza);
+		Pizza pizza = query.getSingleResult();
+		pizza.setCode(updatePizza.getCode());
+		pizza.setNom(updatePizza.getNom());
+		pizza.setPrix(updatePizza.getPrix());
+		pizza.setCategorie(updatePizza.getCategorie());
+
 	}
 
 	@Override
+	@Transactional
 	public void deletePizza(String codePizza) throws DaoException {
-		EntityManager em = emf.createEntityManager();
-		try {
-			em.getTransaction().begin();
-			TypedQuery<Pizza> query = em.createQuery("select p from Pizza p where code=:codePizza", Pizza.class);
-			query.setParameter("codePizza", codePizza);
-			Pizza pizza = query.getSingleResult();
-			em.remove(pizza);
-			em.getTransaction().commit();
-		} finally {
-			em.close();
-		}
+
+		TypedQuery<Pizza> query = em.createQuery("select p from Pizza p where code=:codePizza", Pizza.class);
+		query.setParameter("codePizza", codePizza);
+		Pizza pizza = query.getSingleResult();
+		em.remove(pizza);
 	}
 
 	@Override
+	@Transactional
 	public void saveAllPizzas(List<Pizza> listPizzas, int nb) throws DaoException {
-		EntityManager em = emf.createEntityManager();
 
-		listPizzas.sort(Comparator.comparing(Pizza::getCode));
-
-		ListUtils.partition(listPizzas, nb).forEach(list -> {
-			em.getTransaction().begin();
-			list.forEach(em::persist);
-			em.getTransaction().commit();
-		});
-
-		em.close();
+		ListUtils.partition(listPizzas, nb).forEach(batchPizzaDaoJpaSpring::save);
 
 	}
 
-	@Override
-	public Pizza doInTransaction(TransactionStatus status) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-}*/
+}

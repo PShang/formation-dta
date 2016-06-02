@@ -87,9 +87,5 @@ public class PizzaDaoMemoire implements IPizzaDao {
 		return pizzas.get(code);
 	}
 
-	@Override
-	public Pizza doInTransaction(TransactionStatus status) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 }

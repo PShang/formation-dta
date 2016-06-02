@@ -190,10 +190,6 @@ public class PizzaDaoJdbc implements IPizzaDao {
 		this.pass = pass;
 	}
 
-	@Override
-	public Pizza doInTransaction(TransactionStatus status) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
 }
