@@ -1,8 +1,0 @@
-CREATE TABLE pizza (
-	identifie INT NOT NULL,
-	nom CHAR(20) NOT NULL,
-	prix INT NOT NULL,
-	url VARCHAR(10),
-	Categorie CHAR(20),
-	PRIMARY KEY (identifie)
-);

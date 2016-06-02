@@ -17,7 +17,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 public class SpringConfig {
 	@Bean
 	public DataSource dataSource() {
-		return new EmbeddedDatabaseBuilder().setType(EmbeddedDatabaseType.H2).addScript("pizzaria-schema")
+		return new EmbeddedDatabaseBuilder().setType(EmbeddedDatabaseType.H2).addScript("pizzeria-schema.sql")
 				.addScript("pizzeria-data.sql").build();
 	}
 

@@ -13,8 +13,8 @@ import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 public class PizzaDaoSpringTest {
 	@Bean
 	public DataSource dataSource() {
-		return new EmbeddedDatabaseBuilder().setType(EmbeddedDatabaseType.H2).addScript("db-schema.sql")
-				.addScript("db.data.sql").build();
+		return new EmbeddedDatabaseBuilder().setType(EmbeddedDatabaseType.H2).addScript("pizzeria-schema.sql")
+				.addScript("pizzeria.data.sql").build();
 	}
 
 }
