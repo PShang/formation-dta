@@ -1,4 +1,4 @@
-package fr.pizzeria.dao;
+package fr.pizzeria.test;
 
 import javax.sql.DataSource;
 

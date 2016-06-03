@@ -17,6 +17,7 @@ import fr.pizzeria.dao.pizza.IPizzaDao;
 import fr.pizzeria.exception.DaoException;
 import fr.pizzeria.model.CategoriePizza;
 import fr.pizzeria.model.Pizza;
+import fr.pizzeria.test.SpringConfig;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = SpringConfig.class)
