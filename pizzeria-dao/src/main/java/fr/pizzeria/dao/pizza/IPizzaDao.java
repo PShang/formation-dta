@@ -9,7 +9,7 @@ import org.springframework.transaction.TransactionStatus;
 
 public interface IPizzaDao {
 
-	IPizzaDao DEFAULT_IMPLEMENTATION = new PizzaDaoMemoire();
+	//IPizzaDao DEFAULT_IMPLEMENTATION = new PizzaDaoMemoire();
 
 	List<Pizza> findAllPizzas() throws DaoException;
 
