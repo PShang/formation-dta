@@ -13,6 +13,8 @@
 		<module>pizzeria-console-client</module>
 		<module>pizzeria-console-ihm-lib</module>
 		<module>pizzeria-admin-web</module>
+		<module>pizzeria-spring-web</module>
+		
 	</modules>
 
 	<properties>
@@ -145,7 +147,12 @@
 						<target>1.8</target>
 					</configuration>
 				</plugin>
-
+				<plugin>
+					<artifactId>maven-war-plugin</artifactId>
+					<configuration>
+						<failOnMissingWebXml>false</failOnMissingWebXml>
+					</configuration>
+				</plugin>
 			</plugins>
 		</pluginManagement>
 
