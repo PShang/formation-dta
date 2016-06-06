@@ -10,8 +10,14 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.apache.commons.collections4.ListUtils;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.TransactionStatus;
 
 import fr.pizzeria.exception.DaoException;
 import fr.pizzeria.exception.DeletePizzaException;
@@ -20,11 +26,18 @@ import fr.pizzeria.exception.UpdatePizzaException;
 import fr.pizzeria.model.CategoriePizza;
 import fr.pizzeria.model.Pizza;
 
+@Repository
+@Lazy
 public class PizzaDaoJdbc implements IPizzaDao {
+	private static final Logger LOG = Logger.getLogger(PizzaDaoJdbc.class.toString());
 
 	private String url;
 	private String user;
 	private String pass;
+
+	public PizzaDaoJdbc() {
+		LOG.log(Level.INFO, "Création du bean PizzaDaoJdbc");
+	}
 
 	public PizzaDaoJdbc(String driver, String url2, String user2, String pass2) throws DaoException {
 		try {
@@ -149,5 +162,34 @@ public class PizzaDaoJdbc implements IPizzaDao {
 			throw e;
 		}
 	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	@Value("${jdbc.url}")
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
+	public String getUser() {
+		return user;
+	}
+
+	@Value("${jdbc.user}")
+	public void setUser(String user) {
+		this.user = user;
+	}
+
+	public String getPass() {
+		return pass;
+	}
+
+	@Value("${jdbc.pass}")
+	public void setPass(String pass) {
+		this.pass = pass;
+	}
+
+	
 
 }

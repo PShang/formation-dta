@@ -64,6 +64,11 @@ public class Pizza {
 		this.id = id;
 	}
 
+	public Pizza(String string, String string2, double double1, CategoriePizza valueOf) {
+		// TODO Auto-generated constructor stub
+	}
+
+
 	public Integer getId() {
 		return id;
 	}
@@ -147,16 +152,6 @@ public class Pizza {
 	@Override
 	public int hashCode() {
 		return new HashCodeBuilder(17, 37).append(code).toHashCode();
-	}
-
-	
-	
-	public String toJson() {
-		StringBuilder sb = new StringBuilder("{");
-		sb.append("\"nom\":\"").append(this.getNom()).append("\",")
-		.append("\"code\":\"").append(this.getCode()).append("\"")
-		.append("}");
-		return sb.toString();
 	}
 
 	@Override

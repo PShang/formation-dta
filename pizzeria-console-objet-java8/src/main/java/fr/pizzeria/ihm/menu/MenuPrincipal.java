@@ -2,6 +2,9 @@ package fr.pizzeria.ihm.menu;
 
 import java.util.Scanner;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import fr.pizzeria.dao.DaoFactory;
 import fr.pizzeria.ihm.menu.option.AfficherPizzaTarifPlusEleveOptionMenu;
 import fr.pizzeria.ihm.menu.option.AjouterNouvellePizzaOptionMenu;
@@ -12,10 +15,12 @@ import fr.pizzeria.ihm.menu.option.MettreAJourPizzaOptionMenu;
 import fr.pizzeria.ihm.menu.option.QuitterOptionMenu;
 import fr.pizzeria.ihm.menu.option.SupprimerPizzaOptionMenu;
 
+@Component
 public class MenuPrincipal extends AbstractMenu {
 
 	private static final String MENU_TITRE_LIBELLE = "Application Pizzeria Console";
 
+	@Autowired
 	public MenuPrincipal(Scanner sc, DaoFactory dao) {
 		super(MENU_TITRE_LIBELLE, sc, dao);
 	}

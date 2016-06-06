@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.2.xsd">
+
+
+	<bean id="menuPrincipal" class="fr.pizzeria.ihm.menu.MenuPrincipal">
+		<constructor-arg ref="scanner" />
+		<constructor-arg ref="daoFactory" />
+	</bean>
+	
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+    <property name="location" value="jdbc.properties"/>
+  </bean>
+
+
+	<bean id="scanner" class="java.util.Scanner">
+		<constructor-arg>
+			<util:constant static-field="java.lang.System.in" />
+		</constructor-arg>
+	</bean>
+
+<!-- 
+	<bean id="ajouterNouvellePizzaOptionMenu"
+		class="fr.pizzeria.ihm.menu.option.AjouterNouvellePizzaOptionMenu">
+		<constructor-arg ref="scanner" />
+		<constructor-arg ref="daoFactory" />
+	</bean>
+
+	<bean id="afficherPizzaTarifPlusEleveOptionMenu"
+		class="fr.pizzeria.ihm.menu.option.AfficherPizzaTarifPlusEleveOptionMenu">
+		<constructor-arg ref="daoFactory" />
+	</bean>
+
+	<bean id="importerBaseDeDonneesOptionMenu"
+		class="fr.pizzeria.ihm.menu.option.ImporterBaseDeDonneesOptionMenu">
+		<constructor-arg ref="daoFactory" />
+	</bean>
+
+	<bean id="listerPizzaGroupeParCategorieOptionMenu"
+		class="fr.pizzeria.ihm.menu.option.ListerPizzaGroupeParCategorieOptionMenu">
+		<constructor-arg ref="daoFactory" />
+	</bean>
+
+	<bean id="listerPizzaOptionMenu" class="fr.pizzeria.ihm.menu.option.ListerPizzaOptionMenu">
+		<constructor-arg ref="daoFactory" />
+	</bean>
+
+	<bean id="mettreAJourPizzaOptionMenu" class="fr.pizzeria.ihm.menu.option.MettreAJourPizzaOptionMenu">
+		<constructor-arg ref="scanner" />
+		<constructor-arg ref="daoFactory" />
+	</bean>
+
+	<bean id="supprimerPizzaOptionMenu" class="fr.pizzeria.ihm.menu.option.SupprimerPizzaOptionMenu">
+		<constructor-arg ref="scanner" />
+		<constructor-arg ref="daoFactory" />
+	</bean>
+
+	<bean id="quitterOptionMenu" class="fr.pizzeria.ihm.menu.option.QuitterOptionMenu">
+		<constructor-arg value="Quitter" />
+	</bean>
+ -->
+</beans>

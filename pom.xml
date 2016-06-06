@@ -12,6 +12,7 @@
 		<module>pizzeria-console-objet-java8</module>
 		<module>pizzeria-console-client</module>
 		<module>pizzeria-console-ihm-lib</module>
+		<module>pizzeria-admin-web</module>
 	</modules>
 
 	<properties>
@@ -26,11 +27,21 @@
 		<hibernate-jpa.version>1.0.0.Final</hibernate-jpa.version>
 		<hibernate.version>5.1.0.Final</hibernate.version>
 		<commons-codec.version>1.10</commons-codec.version>
-		<servlet.version>3.1.0</servlet.version>
+		<servlet-api.version>3.1.0</servlet-api.version>
+		<jstl.version>1.2</jstl.version>
+		<cdi.version>1.2</cdi.version>
+		<javaee.version>7.0</javaee.version>
 	</properties>
 
 	<dependencyManagement>
 		<dependencies>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-framework-bom</artifactId>
+				<version>4.2.6.RELEASE</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
 			<dependency>
 				<groupId>${project.groupId}</groupId>
 				<artifactId>pizzeria-model</artifactId>
@@ -93,8 +104,31 @@
 			<dependency>
 				<groupId>javax.servlet</groupId>
 				<artifactId>javax.servlet-api</artifactId>
-				<version>${servlet.version}</version>
+				<version>${servlet-api.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>jstl</groupId>
+				<artifactId>jstl</artifactId>
+				<version>${jstl.version}</version>
 				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>javax.enterprise</groupId>
+				<artifactId>cdi-api</artifactId>
+				<version>${cdi.version}</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>javax</groupId>
+				<artifactId>javaee-api</artifactId>
+				<version>${javaee.version}</version>
+				<scope>provided</scope>
+			</dependency>
+			<!-- http://mvnrepository.com/artifact/org.springframework.data/spring-data-jpa -->
+			<dependency>
+				<groupId>org.springframework.data</groupId>
+				<artifactId>spring-data-jpa</artifactId>
+				<version>1.10.1.RELEASE</version>
 			</dependency>
 
 		</dependencies>
@@ -126,9 +160,9 @@
 			<properties>
 				<dao.impl>2</dao.impl>
 				<jdbc.driver>com.mysql.jdbc.Driver</jdbc.driver>
-				<jdbc.url>jdbc:mysql://localhost:8889/pizzeriadb</jdbc.url>
-				<jdbc.user>pizzeriadb</jdbc.user>
-				<jdbc.pass>pizzeriadb</jdbc.pass>
+				<jdbc.url>jdbc:mysql://localhost:3306/pizzeria</jdbc.url>
+				<jdbc.user>pizzeria</jdbc.user>
+				<jdbc.pass>pizzeria</jdbc.pass>
 			</properties>
 		</profile>
 
